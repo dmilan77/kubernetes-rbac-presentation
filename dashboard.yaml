@@ -122,7 +122,7 @@ spec:
     spec:
       containers:
       - name: kubernetes-dashboard
-        image: gcr.io/google_containers/kubernetes-dashboard-amd64:v1.7.1
+        image: gcr.io/google_containers/kubernetes-dashboard-amd64:v1.8.3
         livenessProbe:
           httpGet:
             path: /
@@ -133,7 +133,7 @@ spec:
         - mountPath: /tmp
           name: tmp-volume
       - name: openresty-oidc
-        image: myobplatform/openresty-oidc:1.1.1
+        image: docker.io/dmilan/dmilan-openrestyoidc:v1
         ports:
         - containerPort: 9000
           protocol: TCP

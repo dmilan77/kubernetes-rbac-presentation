@@ -1,4 +1,4 @@
-set -x
+#set -x
 # Step 0
 # Configure variables
 export OIDC_APP_NAME='kubernetesOIDCTest'
@@ -9,7 +9,7 @@ export VMDRIVER=hyperkit
 #export VMDRIVER=xhyve
 
 # Check openid-configuration discovery-data
-curl ${ISSUER_URL_DOMAIN}/.well-known/openid-configuration | jq .
+curl ${ISSUER_URL_DOMAIN}.well-known/openid-configuration | jq .
 
 # Step 1
 # Create RBAC minikube
@@ -61,6 +61,7 @@ kubectl rollout status deployment/kubernetes-dashboard-oidc
 kubectl config set-context --user minikube --cluster minikube --namespace kube-system mk-system
 kubectl config use-context mk-system
 
+kubectl apply -f ./namespace-create.yaml --validate=false
 kubectl apply -f ./roles-user.yaml --validate=false
 
 
