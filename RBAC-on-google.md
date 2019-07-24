@@ -1,9 +1,9 @@
 # Part 1
 # User 1: user1@dmilan.com
 # User2: user2@dmilan.com
-atl-kube-meetup-0724
+### atl-kube-meetup-0724
 
-
+```
 export my_zone=us-central1-a
 export my_cluster=standard-cluster-1
 
@@ -42,13 +42,13 @@ kubectl apply -f ./my-pod.yaml --namespace=production
 
 kubectl get pods --namespace=production
 
-
+```
 # Part 2
 
 In this task you will create a sample custom role, and then create a RoleBinding that grants Username 2 the editor role in the production namespace.
 ## grant the Username 1 account cluster-admin privileges
-
-kubectl create clusterrolebinding cluster-admin-binding --clusterrole cluster-admin --user google4312086_student@qwiklabs.net
+```
+kubectl create clusterrolebinding cluster-admin-binding --clusterrole cluster-admin --user user1@dmilan.com
 
 # cat pod-reader-role.yaml
 kind: Role
@@ -76,7 +76,7 @@ metadata:
   namespace: production
 subjects:
 - kind: User
-  name: googleuser6613_student@qwiklabs.net
+  name: user2@dmilan.com
   apiGroup: rbac.authorization.k8s.io
 roleRef:
   kind: Role
@@ -97,7 +97,7 @@ kubectl get namespaces
 kubectl apply -f ./production-pod.yaml
 
 #googleuser6613_student@cloudshell:~/training-data-analyst/courses/ak8s/15_RBAC (qwiklabs-gcp-e8ea6dca40d54835)$ kubectl apply -f ./production-pod.yaml
-#Error from server (Forbidden): error when creating "./production-pod.yaml": pods is forbidden: User "googleuser6613_student@qwiklabs.net" cannot create resource "pods" in API group "" in the namespace "production"
+#Error from server (Forbidden): error when creating "./production-pod.yaml": pods is forbidden: User "XXXXXXXXX" cannot create resource "pods" in API group "" in the namespace "production"
 
 ## on User1 cloud shell
 kubectl apply -f user2-editor-binding.yaml
@@ -111,4 +111,4 @@ kubectl apply -f ./production-pod.yaml
 
 
 
-
+```
