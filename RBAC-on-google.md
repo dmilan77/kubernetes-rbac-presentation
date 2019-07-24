@@ -5,7 +5,7 @@
 
 ```
 export my_zone=us-central1-a
-export my_cluster=standard-cluster-1
+export my_cluster=dmilan-cluster-1
 
 source <(kubectl completion bash)
 gcloud container clusters create $my_cluster --num-nodes 3 --enable-ip-alias --zone $my_zone
@@ -15,16 +15,16 @@ gcloud container clusters get-credentials $my_cluster --zone $my_zone
 git clone https://github.com/dmilan77/training-data-analyst.git
 cd ~/training-data-analyst/courses/ak8s/15_RBAC/
 
-# cat my-namespace.yaml
+# cat production-namespace.yaml
 apiVersion: v1
 kind: Namespace
 metadata:
   name: production
 
-kubectl create -f ./my-namespace.yaml
+kubectl create -f ./production-namespace.yaml
 kubectl get namespaces
 
-# cat my-pod.yaml
+# cat nginx-pod.yaml
 apiVersion: v1
 kind: Pod
 metadata:
@@ -38,7 +38,7 @@ spec:
     ports:
     - containerPort: 80
 
-kubectl apply -f ./my-pod.yaml --namespace=production
+kubectl apply -f ./nginx-pod.yaml --namespace=production
 
 kubectl get pods --namespace=production
 
@@ -87,7 +87,7 @@ roleRef:
 
 ## on User2 cloud shell
 export my_zone=us-central1-a
-export my_cluster=standard-cluster-1
+export my_cluster=dmilan-cluster-1
 source <(kubectl completion bash)
 gcloud container clusters get-credentials $my_cluster --zone $my_zone
 git clone https://github.com/dmilan77/training-data-analyst.git
